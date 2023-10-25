@@ -15,10 +15,9 @@ namespace CretaceousApi.Controllers
       _db = db;
     }
 
-
     // GET: api/Animals
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Animal>>> Get(string species, string name, int minimumAge) //take in multiple parameters
+    public async Task<ActionResult<PaginatedList<Animal>>> Get(string species, string name, int minimumAge, int pageIndex = 1, int pageSize = 10) //take in multiple parameters
     {
       IQueryable<Animal> query = _db.Animals.AsQueryable(); //gets us ready to do a search
 
@@ -36,8 +35,15 @@ namespace CretaceousApi.Controllers
         query = query.Where(entry => entry.Age >= minimumAge);
       }
 
+      var paginatedAnimals = await PaginatedList<Animal>.CreateAsync(query, pageIndex, pageSize);
 
-      return await query.ToListAsync();
+      if (paginatedAnimals.Count == 0)
+      {
+        return NotFound();
+      }
+
+      return paginatedAnimals;
+
     }
     //return a list of animals from a datbase. Also returns status code 
 
