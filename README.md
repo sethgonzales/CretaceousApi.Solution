@@ -10,13 +10,14 @@
 * .NET 6
 * ASP.NET Core MVC
 * Entity Framework Core
-* Postman
+* Postman v10.19
 * MySQL
 * MySQL Workbench
 
 ## Description
 
-This application builds an API of animals, storing this information using a database. Users may . Anonymous users may only view the home and detail pages of each treat and flavor. Logged in users may add new treats and flavors, select to see more specific details, edit or delete entries, and assign many treats to many flavors, and vice versa. This project follows object oriented design and object relational mapping, with the treat and flavor objects. This is an ASP.NET Core MVC application that uses Identity.
+This is a Web API application that shares and stores data regarding animals of the Cretaceous Period. Following full CRUD functionality, users can access the data, update animals, delete animals, and create new animals. This API utilizes pagination to limit the number of results given at a time when a user makes a request to see a list of all animals.
+
 <!-- <p align="center">
   <img src="./CretaceousApi/wwwroot/img/api_schema.png" alt="overview of Cretaceous Api" width="80%">
 </p> -->
@@ -25,8 +26,10 @@ This application builds an API of animals, storing this information using a data
 
 ## Setup and Installation Requirements
 
-### Setting up the project
+### Required Technology
 * Before starting, check that all required technologies are used. For more information on configuring [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) and [MySQLWorkbench](https://dev.mysql.com/doc/workbench/en/), follow the links provided.
+
+### Launching and Setting Up the Project
 * Navigate to the Cretaceous Api repository [GitHub](https://github.com/sethgonzales/CretaceousApi.Solution).
 * Clone the repository down using `$ git clone https://github.com/sethgonzales/CretaceousApi.Solution.git` in your terminal.
 * Within the production directory `CretaceousApi`, create a new file called `appsettings.json`.
@@ -54,7 +57,6 @@ This application builds an API of animals, storing this information using a data
 * Navigate to your MySQLWorkbench to double check that your database has been built without error.
 * In the command line, run the command `$ dotnet run` or `$ dotnet watch run` to compile and execute the application.
    * To compile the application without running it, use the following command: `$ dotnet build`.
-* Begin populating your database. Use navigational links for quick access to different pages.
 
 ## API Documentation 
 Explore API endpoints in your browser or in Postman. 
@@ -65,15 +67,15 @@ The Cretaceous API defaults to 10 items per page, beginning on page number 1. To
 ### Cretaceous Animal API Endpoints
 Base URL: ```http://localhost:5000```
 
-```
-GET http://localhost:5000/api/animals/
-GET http://localhost:5000/api/animals/{id}
-POST http://localhost:5000/api/animals/
-PUT http://localhost:5000/api/animals/{id}
-DELETE http://localhost:5000/api/animals/{id}
-```
+| Request Type | Path |
+| :---: | :---: | 
+| GET | /api/animals/ |
+| GET | /api/animals/{id} |
+| POST | /api/animals/ |
+| PUT  | /api/animals/{id} |
+| DELETE | /api/animals/{id} |
 
-#### Path Parameters
+### Path Parameters
 | Parameter | Type | Default | Required | Description |
 | :---: | :---: | :---: | :---: | --- |
 | pageIndex | Number | 1 | not required | Returns the requested index page.
@@ -125,8 +127,7 @@ http://localhost:5000/api/Animals?species=Dinosaur&name=Matilda&minimumAge=2&pag
 
 ## Known Bugs
 
-* Viewing not suited for smaller screens.
-* Animation on dropdown menu broken
+* There are no known bugs for this API. If you find any, please report them to sethgonzales157@gmail.com
 
 ## MIT License
 ```
